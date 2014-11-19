@@ -1,6 +1,10 @@
 AutomatedMakefile = am
 CC = g++
 
+FILES = HeapDriver.o 
+#DrawHeapSkew.o
+EXECUTABLE = heap.exe
+
 LAB_13_PATH = /$(DRIVE_LETTER)/13-Heap_Skew
 GTKMM_PATH = /$(DRIVE_LETTER)/MinGW/gtkmm
 
@@ -11,5 +15,16 @@ LIBS = -lCSC2110 -lgui -lgtkmm-2.4 -latkmm-1.6 -lgdkmm-2.4 -lgiomm-2.4 -lpangomm
 COMPILE = $(CC) $(INC_DIRS) -c
 LINK = $(CC) $(LIB_DIRS) -o
 
+FILES_1 = HeapDriver.o
+FILES_2 = DrawHeapSkew.o
 
+all: Lab13
 
+Lab13: 		$(FILES)
+		$(LINK) $(EXECUTABLE) $(FILES) $(LIBS)
+		
+DrawHeapSkew.o: DrawHeapSkew.cpp BinaryTreeIterator.h BinaryTree.h
+				$(COMPILE) DrawHeapSkew.cpp
+
+HeapDriver.o: HeapDriver.cpp HeapSkew.h BinaryTreeIterator.h BinaryTree.h
+				$(COMPILE) HeapDriver.cpp
